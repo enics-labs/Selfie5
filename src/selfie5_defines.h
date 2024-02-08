@@ -36,7 +36,7 @@
 #ifdef __LEO2_BOARD__
 #define NUM_TESTS_LIMIT  NUM_TEST_ITR // provided by leo2_clx -itr (default is 1)
 #else 
-#define NUM_TESTS_LIMIT  10  // Number of tests 
+#define NUM_TESTS_LIMIT  1000  // Number of tests 
 #endif
 
 #define MAX_NUM          8  // This parameter determines the maximum literal number the assigned registers
@@ -72,7 +72,7 @@
 #endif
 
 #if GP_DEF == NA
- #define VERBOSITY_LEVEL 3    // Higher VERBOSITY_LEVEL means more prints
+ #define VERBOSITY_LEVEL 4    // Higher VERBOSITY_LEVEL means more prints
 #else
  #define VERBOSITY_LEVEL GP_DEF  
 #endif

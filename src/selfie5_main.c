@@ -98,7 +98,7 @@ void init_selfie5(unsigned int test_seed) {
     
     lfsr_rand_set_seed(test_seed) ; // Initialize random number seed.
     
-	for (int i = 0; i < INSTR_ARRAY_SIZE ; i++) is_address_available[i] = True;     // True indicates address is still available			  
+	for (int i = 0; i < INSTR_ARRAY_SIZE ; i++) is_address_available[i] = True; // True indicates address is still available			  
 
 
 	for (int i = BASE_TESTED_REG ; i < (BASE_TESTED_REG+NUM_TESTED_REGS) ; i++)  {
@@ -196,8 +196,9 @@ int quit_selfie5(void) {
  
 int main() {
     
+#ifdef __LEO2_BOARD__    
    leo_2_init(); 
-            
+#endif           
 
    #ifdef INTERRUPTS
       //set interrupt enable

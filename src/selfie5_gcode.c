@@ -1,8 +1,4 @@
 
-#ifndef __LEO2_BOARD__
-#include <stdio.h>
-#include <stdlib.h>
-#endif
 
 #include "selfie5_common.h"
 
@@ -357,7 +353,7 @@ extern unsigned int    dmem_array[NUM_TESTED_DMEM_WORDS];           // This arra
          CASE_ENUM_STR(gcode_type_str, GEND)           
          default: {
           bm_printf("ERROR: selfie5_gcode.c - Invalid code, get_gcode_type_str must handle all codes of selfie5_gcode_cmd_t");
-          bm_quit_app() ;
+          quit_selfie5() ;
           break ;
          }
        } // switch 

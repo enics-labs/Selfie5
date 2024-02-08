@@ -4,11 +4,6 @@
  * Copyright (C) 2014-2015 Microprocessor R&D Center (MPRC), Peking University
   * https://github.com/Oliver-Luo/MPRC-RISCV-simulator/tree/master/src
  */
- 
-#ifndef __LEO2_BOARD__
-#include <stdio.h>
-#include <stdlib.h>
-#endif
 
 #include "selfie5_common.h"
 

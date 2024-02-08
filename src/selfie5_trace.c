@@ -78,7 +78,7 @@ char * riscv_mnemonic_str(opc_t riscv_opc, funct3_t riscv_f3) {
     
     default     : {
         bm_printf("trace switch(riscv_opc) missing switch case %d\n",riscv_opc);
-        bm_quit_app();
+        quit_selfie5();
     }    
   }
 
@@ -94,7 +94,7 @@ char * riscv_mnemonic_str(opc_t riscv_opc, funct3_t riscv_f3) {
       
       default     : {
           bm_printf("trace is_branch switch(riscv_f3) missing switch case %d\n",riscv_f3);
-          bm_quit_app();
+          quit_selfie5();
       }
     }  
   }
@@ -112,7 +112,7 @@ char * riscv_mnemonic_str(opc_t riscv_opc, funct3_t riscv_f3) {
         
         default     : {
             bm_printf("trace is_alu switch(riscv_f3) missing switch case %d\n",riscv_f3);
-            bm_quit_app();
+            quit_selfie5();
         }
     }    
   }   
@@ -131,7 +131,7 @@ char * riscv_mnemonic_str(opc_t riscv_opc, funct3_t riscv_f3) {
             
             default     : {
                 bm_printf("trace is_alu_imm switch(riscv_f3) missing switch case %d\n",riscv_f3);
-                bm_quit_app();
+                quit_selfie5();
             }
          }
   }

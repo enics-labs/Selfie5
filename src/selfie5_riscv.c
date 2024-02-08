@@ -1,8 +1,4 @@
 
-#ifndef __LEO2_BOARD__
-#include <stdio.h>
-#include <stdlib.h>
-#endif
 
 #include "selfie5_common.h"
 
@@ -22,7 +18,7 @@ funct3_t gcode_to_riscv_f3(selfie5_gcode_cmd_t  gcode_type) {
        case GAND: return F3_AND ;       
        default: {
           bm_printf("ERROR gcode_to_riscv_f3 non supported gcode\n");
-          bm_quit_app();
+          quit_selfie5();
           return 0;
        }
     }   

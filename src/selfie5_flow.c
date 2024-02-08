@@ -1,8 +1,4 @@
 
-#ifndef __LEO2_BOARD__
-#include <stdio.h>
-#include <stdlib.h>
-#endif
 
 
 #include "selfie5_common.h"

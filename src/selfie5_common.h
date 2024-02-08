@@ -5,6 +5,9 @@
 #include <leo_2_init.h>
 #endif 
 
+#ifndef __SELFIE5_DEV__
+extern unsigned int dmem_load_store_space[] ;
+#endif
 
 
 typedef enum {False, True} bool_t;

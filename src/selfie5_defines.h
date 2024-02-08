@@ -56,6 +56,7 @@
 
 #ifdef __SELFIE5_DEV__
 #define MIN_XCORE_IMEM 0
+#define dmem_load_store_space 0x10000000 
 #endif
 
 

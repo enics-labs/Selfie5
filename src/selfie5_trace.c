@@ -142,7 +142,6 @@ char * riscv_mnemonic_str(opc_t riscv_opc, funct3_t riscv_f3) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-extern unsigned int dmem_load_store_space[] ;
   
 void print_full_trace() {
 

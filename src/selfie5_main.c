@@ -9,7 +9,7 @@
     extern unsigned int dmem_code_block[] ;
   #endif
 #endif
-extern unsigned int dmem_load_store_space[] ;
+
 
 #ifdef INTERRUPTS
 #include <int.h>
@@ -106,7 +106,11 @@ void init_selfie5(unsigned int test_seed) {
           registers_array[i] = initial_registers_array[i] ;
           vl_bm_printf(4)("R[%-2d]=%08x\n",i,initial_registers_array[i]);
     }
-    registers_array[LOAD_STORE_BASE_REG] = (int) dmem_load_store_space ;       
+    
+
+    registers_array[LOAD_STORE_BASE_REG] = (int) dmem_load_store_space ; 
+ 
+    
     vl_bm_printf(4)("R[%-2d]=%08x # dmem load/store space pointer\n\n",
                      LOAD_STORE_BASE_REG,registers_array[LOAD_STORE_BASE_REG]);    
         

@@ -8,7 +8,11 @@ by following paper:
 *Selfie5: an autonomous, self-contained verification approach for high-throughput random testing of programmable processors*  
 Link to be provided upon publication release.   
 
-__Currently setup and running guidelines are under work in progress, to be accomplished by publication release time.__
+__Currently setup and running guidelines are under WORK IN PROGRESS, to be accomplished by publication release at towards the above conference.__
+
+# Download and Installation
+
+To Be provided ... 
   
 
  

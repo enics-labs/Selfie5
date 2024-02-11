@@ -10,9 +10,15 @@ Link to be provided upon publication release.
 
 __Currently setup and running guidelines are under WORK IN PROGRESS, to be accomplished by publication release at towards the above conference.__
 
-# Download and Installation
+# Download and initial installation
 
-To Be provided ... 
+```bash
+# Open a bash terminal at your desired Installation space.
+git clone git@github.com:enics-labs/Selfie5.git ;# Clone the repository
+cd selfie5/runspace ; # Go to Runspace
+../scripts/comp_rvsim_no_dut.sh  ;# Compile in RRVSIM non-dut mode
+./selfie5.exe ;# Execute
+```
   
 
  

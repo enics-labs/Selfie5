@@ -1,3 +1,5 @@
+#!/bin/bash
+echo "Compiling SELFIE5 ..."
 gcc \
 ../src/selfie5_rvsim_instr.c \
 ../src/selfie5_rvsim_executer.c \
@@ -5,5 +7,7 @@ gcc \
 ../src/selfie5_gcode.c \
 ../src/selfie5_flow.c \
 ../src/selfie5_main.c \
-../src/selfie5_trace.c
+../src/selfie5_trace.c -o selfie5.exe
+echo 
+
 

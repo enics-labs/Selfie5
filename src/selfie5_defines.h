@@ -4,27 +4,23 @@
 
 // Compilation setting
 
-//#define PULPENIX2_LITE_DUT
-
 #define __SELFIE5_DEV__ // Visual development environment , physical DUT absent
-
-//#define __DDP_PULPENIX__  // Old Pulpenix (DDP 2020 version , below defines set in windows invocation script)
-
-
-//#define _DISABLE_RVSIM__
-
 #ifndef __SELFIE5_DEV__
 #define __TEST_DUT__
+
 #endif
 
-// #define __DDP_PULPENIX__
-// #define __PULPENIX_BM__
 // #define __LEO2_BOARD__
 // #define IMEM_HIGH
 
 // #define CHECK_PERFORMANCE 1
 
 //========================================
+
+typedef enum {False, True} bool_t;
+
+#define MAX_STR_LEN  80  // Max printing strings length
+
 
 #ifdef __SELFIE5_DEV__
 #include <stdio.h>
@@ -60,22 +56,17 @@
 #endif
 
 
-
-#ifdef PULPENIX2_LITE_DUT
-    #define DUT_IMEM_CODE_START_ADDR  (0x8000-(4*INSTR_ARRAY_SIZE))
+#ifdef IMEM_HIGH
+  #define DUT_IMEM_CODE_START_ADDR  (MAX_XCORE_IMEM +    0x1 - (4*INSTR_ARRAY_SIZE))
 #else
-   #ifdef IMEM_HIGH
-     #define DUT_IMEM_CODE_START_ADDR  (MAX_XCORE_IMEM +    0x1 - (4*INSTR_ARRAY_SIZE))
-   #else
-     #define DUT_IMEM_CODE_START_ADDR  (MIN_XCORE_IMEM + 0x8000 - (4*INSTR_ARRAY_SIZE))
-   #endif
+  #define DUT_IMEM_CODE_START_ADDR  (MIN_XCORE_IMEM + 0x8000 - (4*INSTR_ARRAY_SIZE))
 #endif
 
-#if GP_DEF == NA
- #define VERBOSITY_LEVEL 4    // Higher VERBOSITY_LEVEL means more prints
-#else
- #define VERBOSITY_LEVEL GP_DEF  
-#endif
+
+#define VERBOSITY_LEVEL 6    // Higher VERBOSITY_LEVEL means more prints
+
+
+#define PRINT_CVRG_TH_PRCNT 100 // Basic coverage selective printing hook
 
 
 #ifdef __LEO2_BOARD__
@@ -84,21 +75,14 @@
 #define LIVE_SIGN_PRINT_COUNT 10      // Print a life sign once every number of tests
 #endif
 
-//#ifdef __LEO2_BOARD__
 #define vl_bm_printf(verbosity_level) if (verbosity_level <= VERBOSITY_LEVEL) bm_printf 
-//#endif 
 
-#ifndef __PULPENIX_BM__ // Pulpenix Bare-Metal mode / support stand-alone OS equipped run Windows/Linux.
 #ifdef __SELFIE5_DEV__
    #define bm_printf printf 
-#endif   
 #endif
 
 
-
 #define INITIAL_SEED 0x2a209b7d
-
-
 
 #define _SELFIE5_DEFINES_H_PARSED__
 #endif

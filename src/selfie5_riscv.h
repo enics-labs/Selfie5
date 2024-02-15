@@ -172,14 +172,15 @@ typedef enum {
     OPC_OP_FMSUB  = 0x47,
     OPC_OP_FNMSUB = 0x4b,
     OPC_STORE_FP  = 0x27,
-    OPC_LOAD_FP   = 0x07,
+    OPC_LOAD_FP   = 0x07
 
-    // PULP custom
-    OPC_LOAD_POST  = 0x0b,
+    #ifdef __LEO2_BOARD__  // PULP ISA Extension
+   ,OPC_LOAD_POST  = 0x0b,
     OPC_STORE_POST = 0x2b,
     OPC_PULP_OP    = 0x5b,
     OPC_VECOP      = 0x57,
     OPC_HWLOOP     = 0x7b
+    #endif 
     
 } opc_t;
 

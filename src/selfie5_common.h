@@ -9,10 +9,6 @@
 extern unsigned int dmem_load_store_space[] ;
 #endif
 
-
-typedef enum {False, True} bool_t;
-#define MAX_STR_LEN          80     // printing strings length
-
 #include "selfie5_defines.h"
 #include "selfie5_flow.h" 
 #include "selfie5_gcode.h"

@@ -2,14 +2,6 @@
 
 #include "selfie5_common.h"
 
-#ifdef __TEST_DUT__
-#include "selfie5_dut.h"
-#endif
-
-#include "selfie5_common.h" 
-
-
-
 //====================================================================================================================
 
 extern selfie5_instr_t instructions_array[INSTR_ARRAY_SIZE];        // This array represents the 32 instructions
@@ -138,7 +130,6 @@ extern unsigned int    dmem_array[NUM_TESTED_DMEM_WORDS];           // This arra
  
         registers_array[RD] = num;     //  Execute LIMM instruction
 	}
-
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -334,7 +325,7 @@ extern unsigned int    dmem_array[NUM_TESTED_DMEM_WORDS];           // This arra
     char * gcode_type_str ;   // Not sure why it does not work when declared inside function    
     char * get_gcode_type_str(selfie5_gcode_cmd_t selfie5_gcode_cmd)  {
   
-       #define CASE_ENUM_STR(enum_str,enum_code)  case enum_code: enum_str=""#enum_code""; break; 
+       #define CASE_ENUM_STR(enum_str,enum_code)  case enum_code: enum_str=""#enum_code""; break; // Local macro to assist below seitcj
       
        switch(selfie5_gcode_cmd) {          // MUST Add an item per enumerated item of selfie5_gcode_cmd_t at selfie_gcode.h
          CASE_ENUM_STR(gcode_type_str, JMP)
@@ -378,7 +369,6 @@ bool_t is_type_alu(selfie5_gcode_cmd_t gcode_type) {
 		for (int instruction_line = 0; instruction_line < INSTR_ARRAY_SIZE; instruction_line++) {
             
             unsigned int dut_byte_addr = DUT_IMEM_CODE_START_ADDR + 4*instruction_line ;
-
            
 			selfie5_instr_t * instruction = &instructions_array[instruction_line];
             
@@ -389,8 +379,7 @@ bool_t is_type_alu(selfie5_gcode_cmd_t gcode_type) {
 					instruction_line, dut_byte_addr, instruction->riscv_code, gcode_type_str,
                     instruction->offset, instruction_line + instruction->offset);
 			} 
-            
-            
+                        
 			else if ((instruction->gcode_type == JEQ) || (instruction->gcode_type == JNE)) {
 				vl_bm_printf(3)(" I%-3d (%08x) %08x %7s R%-2d,R%-2d with offset %-4d TO I%-3d\n" ,
 					instruction_line, dut_byte_addr, instruction->riscv_code, gcode_type_str, instruction->RS1, instruction->RS2,
@@ -446,7 +435,7 @@ bool_t is_type_alu(selfie5_gcode_cmd_t gcode_type) {
 // ----------------------------------------------------------------------------------------------------------------------	
 
 	void print_gcode_execution_trace() {
-		int gpc = 0;                                //Execution trace starts at intruction 0
+		int gpc = 0;   // Gcode execution trace starts at instruction 0
         
 		for (int cycle = 0; cycle < INSTR_ARRAY_SIZE; cycle++) {
             
@@ -475,7 +464,8 @@ bool_t is_type_alu(selfie5_gcode_cmd_t gcode_type) {
 
 			else if (instruction->gcode_type == GJALR) {
                vl_bm_printf(3)(" C%-3d I%-3d (%08x) %08x %7s TO I%-3d  R%-2d = %08x R%-2d = %08x\n", 
-               cycle, gpc, dut_byte_addr, instruction->riscv_code, gcode_type_str, gpc + instruction->offset, instruction->RS1, instruction->RS1_exec_val, instruction->RD, instruction->RD_exec_val);                    
+               cycle, gpc, dut_byte_addr, instruction->riscv_code, gcode_type_str, gpc + instruction->offset, 
+               instruction->RS1, instruction->RS1_exec_val, instruction->RD, instruction->RD_exec_val);                    
             } 
             
             else if (instruction->gcode_type == LIMM) {

@@ -14,8 +14,10 @@
 #ifdef INTERRUPTS
 #include <int.h>
 #include <timer.h>
+
 #define EVENT_ENABLE         (EVENT_UNIT_BASE_ADDR+0x0)
 #define EVENT_CLEAR_PENDING	 (EVENT_UNIT_BASE_ADDR+0xc)
+
 volatile unsigned int timer_cnt = 0;
 void ISR_TA_CMP (void) { 
     //set next timer
@@ -169,7 +171,6 @@ bool_t check_dmem(unsigned int * dut_dmem) {
 
 // ----------------------------------------------------------------------------------------------------------------------
 
-
 #ifndef _DISABLE_RVSIM__   // Externals for rvsim to simulate machine code execution.
 	extern char rvsim_imem[];
     extern unsigned int rvsim_reg[]; // For comparison
@@ -180,19 +181,11 @@ bool_t check_dmem(unsigned int * dut_dmem) {
 // -------------------------------------------------------------------------------------------------------------------------
 
 int quit_selfie5(void) {
-#ifdef __PULPENIX_BM__ 
-   #if defined(__DDP_PULPENIX__) || defined(PULPENIX2_LITE_DUT) || defined(__LEO2_BOARD__)
-      #if defined(__LEO2_BOARD__)
+
+#ifdef __LEO2_BOARD__
       bm_quit_app();  // uart message to simulation/pyshell to quit
-      return 0;
-      #else
-      bm_printf("$pyshell quit()\n") ;  // uart message to pyshell to quit (supported also by simulation tb)
-      #endif
-   #else
-      sim_finish();
-   #endif
 #else
-   exit(0) ;
+      exit(0) ;
 #endif    
 }
 
@@ -315,15 +308,15 @@ int main() {
 
        if (VERBOSITY_LEVEL>3) {
  
-       // Basic coverage selective printing hook
-       #define PRINT_CVRG_TH_PRCNT 0      
-       int gcode_cover_prcnt = check_gcode_coverage() ;
-       if (gcode_cover_prcnt>PRINT_CVRG_TH_PRCNT) { ; 
-         bm_printf("\nTest %d Basic GCODE Coverage = %d%%\n",test_idx,gcode_cover_prcnt) ;
-         print_full_trace() ;
-       }
-          
-#if 0
+         // Basic coverage selective printing hook             
+         int gcode_cover_prcnt = check_gcode_coverage() ;
+         if (gcode_cover_prcnt>PRINT_CVRG_TH_PRCNT) { ; 
+           bm_printf("\nTest %d Basic GCODE Coverage = %d%%\n",test_idx,gcode_cover_prcnt) ;
+           print_full_trace() ;
+         }
+       }          
+                    
+       if (VERBOSITY_LEVEL>5) {
           bm_printf("\n\n INSTRUCTION ARRAY AFTER FLOW CODE\n");
           print_instruction_code_flow() ;
 
@@ -334,14 +327,15 @@ int main() {
           print_instruction_code_gcode() ;
            
           bm_printf("\n\n EXECUTION TRACE: STAGE GCODE\n");
+                   
           print_gcode_execution_trace();
                          
           bm_printf("\n\n SELFIE5 REGISTERS EXPECTED CONTENT AT END OF GCODE TRACING\n");
           print_expected_registers();
           bm_printf("\n\n SELFIE5 DMEM LOAD STORE EXPECTED SPACE AT END OF GCODE TRACING\n");
           print_expected_dmem_load_store_space();
-#endif
        }
+
 
        #ifndef _DISABLE_RVSIM__   // Call rvsim to simulate machine code execution.
         vl_bm_printf(3)("\nStarting RVSIM Test #%d for seed %08x\n",test_idx,test_seed) ; 

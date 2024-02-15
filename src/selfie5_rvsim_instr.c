@@ -52,9 +52,7 @@ void rvsim_lui(unsigned int inst)
 
         rvsim_reg[rd] = imm;
 
-#ifdef RVSIM_DEBUG_EXECUTION
        vl_bm_printf(3)("PC: %08x, inst: LUI, rd: %d(0x%x), imm: 0x%x\n", rvsim_PC, rd, rvsim_reg[rd], imm);
-#endif
 }
 
 void rvsim_auipc(unsigned int inst)
@@ -64,9 +62,7 @@ void rvsim_auipc(unsigned int inst)
 
         rvsim_reg[rd] = rvsim_PC + imm;
 
-#ifdef RVSIM_DEBUG_EXECUTION
        vl_bm_printf(3)("PC: %08x, inst: AUIPC, rd: %d(0x%x), imm: 0x%x\n", rvsim_PC, rd, rvsim_reg[rd], imm);
-#endif
 }
 
 void rvsim_jal(unsigned int inst)
@@ -81,9 +77,7 @@ void rvsim_jal(unsigned int inst)
 	rvsim_reg[rd] = rvsim_PC + 4;
 	rvsim_PC = target;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: JAL, rd: %d(0x%x), imm: 0x%x\n", tmp_pc, rvsim_PC, rd,rvsim_reg[rd],imm);
-#endif
 }
 //?? why why set the least-significant bit not the two?
 void rvsim_jalr(unsigned int inst)
@@ -97,9 +91,8 @@ void rvsim_jalr(unsigned int inst)
 	rvsim_reg[rd] = rvsim_PC + 4;
 	rvsim_PC = target;
 
-#ifdef RVSIM_DEBUG_EXECUTION
-                vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: JALR, rd: %d(0x%x), rs1: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rd,rvsim_reg[rd],rs1,rvsim_reg[rs1],imm);
-#endif
+    vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: JALR, rd: %d(0x%x), rs1: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rd,rvsim_reg[rd],rs1,rvsim_reg[rs1],imm);
+
 }
 
 void rvsim_beq(unsigned int inst)
@@ -117,9 +110,7 @@ void rvsim_beq(unsigned int inst)
 	else
 		rvsim_PC += 4;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BEQ, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
-#endif
 }
 
 void rvsim_bne(unsigned int inst)
@@ -137,9 +128,7 @@ void rvsim_bne(unsigned int inst)
 	else
 		rvsim_PC += 4;
 
-#ifdef RVSIM_DEBUG_EXECUTION
    vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BNE, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
-#endif
 }
 
 void rvsim_blt(unsigned int inst)
@@ -157,9 +146,7 @@ void rvsim_blt(unsigned int inst)
 	else
 		rvsim_PC += 4;
 
-#ifdef RVSIM_DEBUG_EXECUTION
-                vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BLT, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2],imm);
-#endif
+    vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BLT, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2],imm);
 }
 
 void rvsim_bge(unsigned int inst)
@@ -177,9 +164,7 @@ void rvsim_bge(unsigned int inst)
 	else
 		rvsim_PC += 4;
 
-#ifdef RVSIM_DEBUG_EXECUTION
-                vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BGE, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
-#endif
+    vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BGE, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
 }
 
 void rvsim_bltu(unsigned int inst)
@@ -197,9 +182,7 @@ void rvsim_bltu(unsigned int inst)
 	else
 		rvsim_PC += 4;
 
-#ifdef RVSIM_DEBUG_EXECUTION
-                vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BLTU, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
-#endif
+    vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BLTU, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
 }
 
 void rvsim_bgeu(unsigned int inst)
@@ -217,9 +200,8 @@ void rvsim_bgeu(unsigned int inst)
 	else
 		rvsim_PC += 4;
 
-#ifdef RVSIM_DEBUG_EXECUTION
-                vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BGEU, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
-#endif
+    vl_bm_printf(3)("PC: %08x, New PC: %08x, inst: BGEU, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", tmp_pc, rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
+
 }
 
 void rvsim_lb(unsigned int inst)
@@ -231,9 +213,7 @@ void rvsim_lb(unsigned int inst)
 
 	rvsim_reg[rd] = sign_ext(rvsim_dmem[addr], 8);
 
-#ifdef RVSIM_DEBUG_EXECUTION
-                vl_bm_printf(3)("PC: %08x, inst: LB, rd: %d(0x%x), rs1: %2d(%08x), imm %d\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm);
-#endif	
+    vl_bm_printf(3)("PC: %08x, inst: LB, rd: %d(0x%x), rs1: %2d(%08x), imm %d\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm);
 }
 
 void rvsim_lh(unsigned int inst)
@@ -248,10 +228,8 @@ void rvsim_lh(unsigned int inst)
 	value = value | rvsim_dmem[++addr] << 8;
 
 	rvsim_reg[rd] = sign_ext(value, 16);
-
-#ifdef RVSIM_DEBUG_EXECUTION
-                vl_bm_printf(3)("PC: %08x, inst: LH, rd: %d(0x%x), rs1: %2d(%08x), imm %d\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm);
-#endif	
+    
+    vl_bm_printf(3)("PC: %08x, inst: LH, rd: %d(0x%x), rs1: %2d(%08x), imm %d\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm);
 }
 
 void rvsim_lw(unsigned int inst)
@@ -267,12 +245,7 @@ void rvsim_lw(unsigned int inst)
 	
 	rvsim_reg[rd] = value;
 
-#ifdef RVSIM_DEBUG_EXECUTION
-                vl_bm_printf(3)("PC: %08x, inst: LW, rd: %d(0x%x), rs1: %2d(%08x), imm 0x%x ; <-mem[0x%x]\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm, addr-4);
-#endif	
-
-
-
+    vl_bm_printf(3)("PC: %08x, inst: LW, rd: %d(0x%x), rs1: %2d(%08x), imm 0x%x ; <-mem[0x%x]\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm, addr-4);
 }
 
 void rvsim_lbu(unsigned int inst)
@@ -284,9 +257,7 @@ void rvsim_lbu(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_dmem[addr];
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: LBU, rd: %d(0x%x), rs1: %2d(%08x), imm %d\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm);
-#endif	
 }
 
 void rvsim_lhu(unsigned int inst)
@@ -302,9 +273,7 @@ void rvsim_lhu(unsigned int inst)
 
 	rvsim_reg[rd] = value;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: LHU, rd: %d(0x%x), rs1: %2d(%08x), imm %d\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm);
-#endif	
 }
 
 void rvsim_sb(unsigned int inst)
@@ -317,9 +286,7 @@ void rvsim_sb(unsigned int inst)
 
 	rvsim_dmem[addr]=value ;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SB, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
-#endif
 }
 // whz ?? something wrong with the memeory.if <ea0, ffffffff>,and we access addr. e9f
 void rvsim_sh(unsigned int inst)
@@ -333,10 +300,7 @@ void rvsim_sh(unsigned int inst)
     rvsim_dmem[addr]   =  value & 0xff;
     rvsim_dmem[++addr] = (value & 0xff00) >> 8;
 	
-
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SH, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x\n", rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm);
-#endif
 }
 
 void rvsim_sw(unsigned int inst)
@@ -354,9 +318,7 @@ void rvsim_sw(unsigned int inst)
 		addr++;       
 	}
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SW, rs1: %2d(%08x), rs2: %2d(%08x), imm: 0x%x ; ->mem[0x%x]\n", rvsim_PC, rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2], imm,addr-4);
-#endif
 }
 
 void rvsim_addi(unsigned int inst)
@@ -367,9 +329,7 @@ void rvsim_addi(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs] + imm;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: ADDI, rd: %d(0x%x), rs: %d(0x%x) , imm: 0x%x\n", rvsim_PC, rd,rvsim_reg[rd], rs,rvsim_reg[rs], imm);
-#endif
 }
 
 void rvsim_slti(unsigned int inst)
@@ -385,9 +345,7 @@ void rvsim_slti(unsigned int inst)
 	else
 		rvsim_reg[rd] = 0;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SLTI, rd: %d(0x%x), rs1: %2d(%08x) , imm: 0x%x\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], cmp2);
-#endif
 }
 
 /*some confusion with the spec whz??*/
@@ -404,9 +362,7 @@ void rvsim_sltiu(unsigned int inst)
 	else
 		rvsim_reg[rd] = 0;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SLTIU, rd: %d(0x%x), rs1: %2d(%08x) , imm: 0x%x\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], cmp2);
-#endif
 }
 
 void rvsim_xori(unsigned int inst)
@@ -417,9 +373,7 @@ void rvsim_xori(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] ^ imm;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: XORI, rd: %d(0x%x), rs1: %2d(%08x) , imm: 0x%x\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm);
-#endif
 }
 
 void rvsim_ori(unsigned int inst)
@@ -430,9 +384,7 @@ void rvsim_ori(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] | imm;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: ORI, rd: %d(0x%x), rs1: %2d(%08x) , imm: 0x%x\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm);
-#endif
 }
 
 void rvsim_andi(unsigned int inst)
@@ -443,9 +395,7 @@ void rvsim_andi(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] & imm;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: ANDI, rd: %d(0x%x), rs1: %2d(%08x) , imm: 0x%x\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], imm);
-#endif
 }
 
 void rvsim_slli(unsigned int inst)
@@ -456,9 +406,7 @@ void rvsim_slli(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] << shift_width;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SLLI, rd: %d(0x%x), rs1: %2d(%08x) , imm: 0x%x\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], shift_width);
-#endif
 }
 
 void rvsim_srli(unsigned int inst)
@@ -469,9 +417,7 @@ void rvsim_srli(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] >> shift_width;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SRLI, rd: %d(0x%x), rs1: %2d(%08x) , imm: 0x%x\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], shift_width);
-#endif
 }
 
 void rvsim_srai(unsigned int inst)
@@ -483,9 +429,7 @@ void rvsim_srai(unsigned int inst)
 	rvsim_reg[rd] = rvsim_reg[rs1] >> shift_width;
 	rvsim_reg[rd] = sign_ext(rvsim_reg[rd], 32 - shift_width);
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SRAI, rd: %d(0x%x), rs1: %2d(%08x) , imm: 0x%x\n", rvsim_PC, rd,rvsim_reg[rd], rs1,rvsim_reg[rs1], shift_width);
-#endif
 }
 
 void rvsim_add(unsigned int inst)
@@ -496,9 +440,7 @@ void rvsim_add(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] + rvsim_reg[rs2];
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: ADD, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_sub(unsigned int inst)
@@ -509,9 +451,7 @@ void rvsim_sub(unsigned int inst)
 	
 	rvsim_reg[rd] = rvsim_reg[rs1] - rvsim_reg[rs2];
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SUB, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_sll(unsigned int inst)
@@ -523,9 +463,7 @@ void rvsim_sll(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] << shift_width;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SLL, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_slt(unsigned int inst)
@@ -542,9 +480,7 @@ void rvsim_slt(unsigned int inst)
 	else
 		rvsim_reg[rd] = 0;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SLT, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_sltu(unsigned int inst)
@@ -561,9 +497,7 @@ void rvsim_sltu(unsigned int inst)
 	else
 		rvsim_reg[rd] = 0;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SLTU, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_xor(unsigned int inst)
@@ -574,10 +508,7 @@ void rvsim_xor(unsigned int inst)
 	
 	rvsim_reg[rd] = rvsim_reg[rs1] ^ rvsim_reg[rs2];
 
-
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: XOR, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 /* logical right shift */
@@ -589,10 +520,9 @@ void rvsim_srl(unsigned int inst)
 	unsigned int shift_width = rvsim_reg[rs2] & 0x1f;
 
 	rvsim_reg[rd] = rvsim_reg[rs1] >> shift_width;
-
-#ifdef RVSIM_DEBUG_EXECUTION
+    
 	vl_bm_printf(3)("PC: %08x, inst: SRL, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
+
 }
 
 /* arithmetic right shift */
@@ -606,9 +536,7 @@ void rvsim_sra(unsigned int inst)
 	rvsim_reg[rd] = rvsim_reg[rs1] >> shift_width;
 	rvsim_reg[rd] = sign_ext(rvsim_reg[rd], 32 - shift_width);
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: SRA, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_or(unsigned int inst)
@@ -619,10 +547,7 @@ void rvsim_or(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] | rvsim_reg[rs2];
 
-
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: OR, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_and(unsigned int inst)
@@ -633,11 +558,8 @@ void rvsim_and(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] & rvsim_reg[rs2];
 
-#define RVSIM_DEBUG_EXECUTION
-
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: AND, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
+
 }
 
 void rvsim_remu(unsigned int inst)
@@ -648,9 +570,7 @@ void rvsim_remu(unsigned int inst)
 
 	rvsim_reg[rd] = rvsim_reg[rs1] % rvsim_reg[rs2];
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: REMU, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif	
 
 }
 
@@ -667,9 +587,7 @@ void rvsim_div(unsigned int inst)
 
 	rvsim_reg[rd] = value_rd;
 
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: DIV, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_divu(unsigned int inst)
@@ -679,9 +597,8 @@ void rvsim_divu(unsigned int inst)
 	unsigned int rs2 = Rs2(inst);
 
 	rvsim_reg[rd] = rvsim_reg[rs1] / rvsim_reg[rs2];
-#ifdef RVSIM_DEBUG_EXECUTION
+
 	vl_bm_printf(3)("PC: %08x, inst: DIVU, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_mul(unsigned int inst)
@@ -691,15 +608,12 @@ void rvsim_mul(unsigned int inst)
 	unsigned int rs2 = Rs2(inst);
 	unsigned long long int value = (unsigned long long int)rvsim_reg[rs1] * (unsigned long long int)rvsim_reg[rs2];
 	rvsim_reg[rd] = value & 0xffffffff;
-#ifdef RVSIM_DEBUG_EXECUTION
+
 	vl_bm_printf(3)("PC: %08x, inst: MUL, rd: %d(0x%x), rs1: %2d(%08x) , rs2: %2d(%08x)\n", rvsim_PC, rd,rvsim_reg[rd] ,rs1,rvsim_reg[rs1], rs2,rvsim_reg[rs2]);
-#endif
 }
 
 void rvsim_fence (unsigned int inst) {
-#ifdef RVSIM_DEBUG_EXECUTION
 	vl_bm_printf(3)("PC: %08x, inst: FENCE\n", rvsim_PC);
-#endif
 }
 
 

@@ -12,8 +12,6 @@ bool_t rvsim_exec_prog(unsigned int entry_addr); // external function prototype
 void rvsim_print_reg_range(int base_reg , int num_regs) ;// external function prototype
 void rvsim_null_regs_range(int base_reg , int num_regs) ; // external function prototype
 
-#define RVSIM_DEBUG_EXECUTION
-
 void rvsim_lui   (unsigned int inst);
 void rvsim_auipc (unsigned int inst);
 void rvsim_jal   (unsigned int inst);

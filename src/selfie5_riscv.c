@@ -1,5 +1,4 @@
 
-
 #include "selfie5_common.h"
 
 //----------------------------------------------------------------------------------------------------
@@ -8,7 +7,6 @@ extern selfie5_instr_t instructions_array[];
 extern unsigned int registers_array[];
 
 //-----------------------------------------------------------------------------------------------------
-
 
 funct3_t gcode_to_riscv_f3(selfie5_gcode_cmd_t  gcode_type) {
     switch (gcode_type) { 
@@ -25,7 +23,6 @@ funct3_t gcode_to_riscv_f3(selfie5_gcode_cmd_t  gcode_type) {
 }
 
 //------------------------------------------------------------------------------------------------------
-
 
 // generate the riscv machine code for the instructions.
 
@@ -110,7 +107,6 @@ void gen_riscv_code() {  // Stage 3 ASM , Machine specific assembly code
         } // JALR
 
 
-
         else if (instr_p->gcode_type == LIMM) {    // handle I-Type
 	      	   itype_imm_t  imm_value;
 	      	   itype_instr_t instr_code;
@@ -191,7 +187,6 @@ void gen_riscv_code() {  // Stage 3 ASM , Machine specific assembly code
                instr_p->riscv_f3 = instr_code.field.funct3 ;
                instr_p->riscv_imm = imm_value.imm; 
                instr_p->RS1 = LOAD_STORE_BASE_REG;               
-
                
          } // SW
          
@@ -204,4 +199,3 @@ void gen_riscv_code() {  // Stage 3 ASM , Machine specific assembly code
    
   } // for
  } // gen_riscv_code
-

@@ -21,10 +21,10 @@ extern unsigned char rvsim_dmem[];
 
 extern unsigned int inst_count ;
 
+// Register handling macros used below
 #define Rd(inst) ((inst >> 7) & 0x1f)
 #define Rs1(inst) ((inst >> 15) & 0x1f)
 #define Rs2(inst) ((inst >> 20) & 0x1f)
-
 
 static int sign_ext(int imm, unsigned int width)
 {

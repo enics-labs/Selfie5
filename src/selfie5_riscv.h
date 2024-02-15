@@ -219,6 +219,8 @@ typedef enum {
      
 } funct3_t;
 
+void gen_riscv_code (void);
+
 // We locate memory access safely at dmem with regards to current stack-pointer
 #define LOAD_STORE_BASE_REG    20     
 #define LOAD_STORE_BASE_OFFSET 0 // base offset in bytes 

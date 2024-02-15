@@ -2,7 +2,6 @@
 
 #include "selfie5_common.h" 
 
-
 #ifdef __TEST_DUT__
   #include "selfie5_dut.h"
   #ifdef DUT_EXEC_FROM_DMEM
@@ -10,8 +9,12 @@
   #endif
 #endif
 
+//----------------------------------------------------------------------------------------------------------------------
 
-#ifdef INTERRUPTS
+
+// Interrupts mode currently supported only only on LEO2 Board with DUT
+#if defined(__LEO2_BOARD__) && defined(__TEST_DUT__) && defined(INTERRUPTS)
+
 #include <int.h>
 #include <timer.h>
 
@@ -31,14 +34,6 @@ void ISR_TA_CMP (void) {
 } 
 #endif
 
-//----------------------------------------------------------------------------------------------------------------------
-
-extern void print_instruction_code_gcode (void);
-extern void print_instruction_code_flow  (void);
-extern void print_gcode_execution_trace  (void);
-extern void print_flow_execution_trace   (void);
-extern void create_gcode                 (void);
-extern void gen_riscv_code               (void);
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -190,14 +185,15 @@ int quit_selfie5(void) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------------
- 
+
 int main() {
     
 #ifdef __LEO2_BOARD__    
    leo_2_init(); 
 #endif           
 
-   #ifdef INTERRUPTS
+// Interrupts mode currently supported only only on LEO2 Board with DUT
+#if defined(__LEO2_BOARD__) && defined(__TEST_DUT__) && defined(INTERRUPTS)
       //set interrupt enable
       bm_printf("enable interrupts...");
       int_enable();
@@ -213,12 +209,10 @@ int main() {
       bm_printf("config event unit...");
       wr32(EVENT_ENABLE, 1<<7); //enable timer interrupt
       bm_printf(" done\n");
-   #endif
+#endif
 
  	bm_printf("\nHello Selfie5\n");   
-
-
-      
+     
     lfsr_rand_set_seed(INITIAL_SEED) ; // Initialize random number seed.
 
     #ifdef __TEST_DUT__

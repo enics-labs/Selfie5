@@ -140,10 +140,6 @@ bool_t rvsim_exec_prog(unsigned int entry_addr)
 			case rvsim_MUL:     rvsim_mul(cmd);       break;
 			case rvsim_FENCE:   rvsim_fence(cmd);     break;            
         } // switch
-        
-		#ifdef DEBUG_MEMORY
-			print_mem();
-		#endif
 
 		rvsim_PC += 4;
 	} // while

@@ -11,7 +11,7 @@ extern char  flow_types_str[][MAX_STR_LEN] ;
 //----------------------------------------------------------------------------------------------------------------------
 
 extern char is_address_available[INSTR_ARRAY_SIZE] ;
-selfie5_instr_t instructions_array[INSTR_ARRAY_SIZE]; 
+extern selfie5_instr_t instructions_array[INSTR_ARRAY_SIZE]; 
 
 int get_next_available_address() {
 	int available_address;

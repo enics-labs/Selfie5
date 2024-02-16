@@ -15,10 +15,21 @@ __Currently setup and running guidelines are under WORK IN PROGRESS, to be accom
 ```bash
 # Open a bash terminal at your desired Installation space.
 git clone git@github.com:enics-labs/Selfie5.git ;# Clone the repository
-cd selfie5/runspace ; # Go to Runspace
+cd Selfie5/runspace ; # Go to Runspace
 ../scripts/comp_rvsim_no_dut.sh  ;# Compile in RVSIM non-dut mode
 ./selfie5.exe ;# Execute
 ```
   
+# Running from Google Colab
+ ```bash
+%%shell
+cd /Content
+\rm -rf Selfie5 ;# Just in case it exist from previous experiment
+git clone https://github.com/enics-labs/Selfie5.git
+cd Selfie5/runspace
+chmod u+x ../scripts/comp_rvsim_no_dut.sh 
+../scripts/comp_rvsim_no_dut.sh
+./selfie5.exe ;# Execute
+```
 
- 
+

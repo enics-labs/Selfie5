@@ -157,7 +157,7 @@ void print_full_trace() {
     
 	for (int cycle = 0; cycle < INSTR_ARRAY_SIZE; cycle++) {
 
-        char ops_str[40]  ;
+        char ops_str[80]  ;
         char imm_str[18] ;
         char offset_str[18] ;        
         char rd_str [18] ;  

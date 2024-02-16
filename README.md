@@ -21,6 +21,10 @@ cd Selfie5/runspace ; # Go to Runspace
 ```
   
 # Running from Google Colab
+
+Simply open a Goole Colab Notebook, create a code cell, copy paste below lines and run the cell  
+
+
  ```bash
 %%shell
 cd /Content
